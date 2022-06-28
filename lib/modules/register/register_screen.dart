@@ -207,7 +207,7 @@ class RegisterScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Don\'t have an account?',
+                            'Has any account?',
                             style: TextStyle(
                                 // fontWeight: FontWeight.bold,
                                 ),
