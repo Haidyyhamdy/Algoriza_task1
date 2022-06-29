@@ -52,10 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
@@ -73,6 +70,29 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
       body: Column(
         children: [
+         RichText(
+             text: TextSpan(children: [
+               TextSpan(
+                text: 'Food',
+                 style: TextStyle(
+                   fontSize: 28,
+                   color: Colors.deepOrange,
+                   fontFamily: 'Cardo',
+                   fontStyle: FontStyle.italic,
+                   fontWeight: FontWeight.bold,
+                 ),
+               ),
+               TextSpan(
+                 text: 'App',
+                 style: TextStyle(
+                   fontSize: 22,
+                   color: Colors.black,
+                   fontFamily: 'Cardo',
+                   fontWeight: FontWeight.bold,
+                   fontStyle: FontStyle.italic,
+                 ),
+               ),
+             ])),
           Expanded(
             child: PageView.builder(
               physics: const BouncingScrollPhysics(),
@@ -99,12 +119,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           SmoothPageIndicator(
             controller: pageController,
             count: onBoardingPages.length,
-            effect: const ExpandingDotsEffect(
+            effect: const JumpingDotEffect(
                 activeDotColor: Colors.deepOrange,
                 dotColor: Colors.grey,
-                dotWidth: 10.0,
-                dotHeight: 10.0,
-                expansionFactor: 4.0,
+                dotWidth: 25.0,
+                dotHeight: 8.0,
                 spacing: 5.0),
           ),
           const SizedBox(
