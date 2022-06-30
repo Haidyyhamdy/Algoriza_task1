@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shop_app/modules/register/register_screen.dart';
 import '../../components/components.dart';
@@ -14,7 +15,11 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent)
+    );
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Center(
         child: SingleChildScrollView(
           child: Column(

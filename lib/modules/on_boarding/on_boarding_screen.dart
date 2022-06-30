@@ -133,9 +133,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             padding: const EdgeInsets.all(20.0),
             child: DefaultButton(
               onClick: () {
-                navigateAndReplace(context, LoginScreen());
+                if(isLast){
+                  navigateAndReplace(context, LoginScreen());
+                }else{
+                  pageController.nextPage(curve: Curves.fastLinearToSlowEaseIn,
+                  duration: Duration(milliseconds: 500));
+                }
+
               },
-              text: 'Get Started',
+              text: isLast ? 'Get Started' : 'Next',
               background: Colors.deepOrange,
             ),
           ),

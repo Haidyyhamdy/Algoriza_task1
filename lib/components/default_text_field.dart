@@ -5,6 +5,7 @@ class DefaultTextField extends StatelessWidget {
   final String text;
   final String validate;
   final IconData? suffix;
+  final VoidCallback? suffixPress;
   final TextInputType type;
   final Widget? prefix;
   final bool isPassword;
@@ -16,6 +17,7 @@ class DefaultTextField extends StatelessWidget {
     required this.validate,
     required this.type,
     this.suffix,
+    this.suffixPress,
     this.prefix,
     this.isPassword = false,
   }) : super(key: key);
@@ -36,7 +38,12 @@ class DefaultTextField extends StatelessWidget {
         hintText: text,
         hintStyle: TextStyle(color: Colors.grey[400]),
         prefixIcon: prefix,
-        suffixIcon: Icon(suffix),
+        suffixIcon: IconButton(
+          onPressed: () {
+            suffixPress!();
+          },
+          icon: Icon(suffix),
+        ),
         border: OutlineInputBorder(),
       ),
     );

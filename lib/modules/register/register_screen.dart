@@ -1,6 +1,6 @@
-
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shop_app/modules/login/loginScreen.dart';
 import '../../components/components.dart';
@@ -9,18 +9,30 @@ import '../../components/default_outLineButton.dart';
 import '../../components/default_text_button.dart';
 import '../../components/default_text_field.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   var emailController = TextEditingController();
+
   var phoneController = TextEditingController();
+
   var passwordController = TextEditingController();
+
+  bool isChange = true;
+
   var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Center(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               Stack(alignment: AlignmentDirectional.bottomStart, children: [
@@ -126,7 +138,7 @@ class RegisterScreen extends StatelessWidget {
                         prefix: CountryCodePicker(
                           onChanged: print,
                           initialSelection: 'EG',
-                          favorite: ['+39', 'FR'],
+                          favorite: ['+39', 'FR', 'EG'],
                           showCountryOnly: false,
                           showOnlyCountryWhenClosed: false,
                           alignLeft: false,
@@ -150,8 +162,15 @@ class RegisterScreen extends StatelessWidget {
                         controller: passwordController,
                         validate: 'password is required',
                         type: TextInputType.visiblePassword,
-                        suffix: Icons.visibility,
-                        isPassword: true,
+                        suffix:
+                            isChange ? Icons.visibility : Icons.visibility_off,
+                        isPassword: isChange,
+                        suffixPress: () {
+                          setState(() {
+                            isChange = !isChange;
+                            isChange ? Icons.visibility : Icons.visibility_off;
+                          });
+                        },
                       ),
                       SizedBox(
                         height: 20,
